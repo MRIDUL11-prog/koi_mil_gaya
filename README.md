@@ -50,10 +50,91 @@ koi_mil_gaya/
 │       └── script.js
 ├── database/
 │   └── schema.sql
-└── README.md
 ```
 
 > This project is currently structured as a simple PHP application ready for local XAMPP development.
+
+## Local Setup with XAMPP
+
+### 1. Install and Start XAMPP
+
+1. Download and install XAMPP for Windows from [apachefriends.org](https://www.apachefriends.org/).
+2. Open the XAMPP Control Panel.
+3. Start **Apache** and **MySQL**. If either service fails to start, resolve the port conflict shown in the Control Panel before continuing.
+
+### 2. Put the Complete Project in `htdocs`
+
+The whole `koi_mil_gaya` project folder must be directly inside XAMPP's `htdocs` folder. With the default XAMPP installation, the project root is:
+
+```text
+C:\xampp\htdocs\koi_mil_gaya
+```
+
+To clone it there, open Command Prompt and run:
+
+```bat
+cd /d C:\xampp\htdocs
+git clone https://github.com/Athena206/koi_mil_gaya.git
+```
+
+If you downloaded the project as a ZIP or already cloned it somewhere else, copy the complete `koi_mil_gaya` folder into `C:\xampp\htdocs`. The resulting layout should look like this:
+
+```text
+C:\xampp\htdocs\
+└── koi_mil_gaya\
+    ├── index.php
+    ├── README.md
+    ├── config\
+    │   └── db.php
+    ├── database\
+    │   └── schema.sql
+    └── assets\
+        ├── css\
+        │   └── style.css
+        └── js\
+            └── script.js
+```
+
+Make sure `index.php` is at `C:\xampp\htdocs\koi_mil_gaya\index.php`. Do not put the project files directly in `htdocs`, and do not leave them nested an extra level deep (for example, `htdocs\koi_mil_gaya\koi_mil_gaya\index.php`).
+
+### 3. Create the MySQL Database and Tables
+
+The project includes `database/schema.sql`, which creates the `koi_mil_gaya` database and a `users` table.
+
+**Using phpMyAdmin:**
+
+1. With Apache and MySQL running, open [http://localhost/phpmyadmin](http://localhost/phpmyadmin).
+2. Select the **Import** tab.
+3. Choose `database/schema.sql` from the project folder.
+4. Click **Import** or **Go** to run the script.
+5. Confirm that the `koi_mil_gaya` database and its `users` table appear in the sidebar.
+
+The schema creates the database itself, so you do not need to create it separately first.
+
+**Alternatively, using the MySQL command line** from Command Prompt:
+
+```bat
+"C:\xampp\mysql\bin\mysql.exe" -u root < "C:\xampp\htdocs\koi_mil_gaya\database\schema.sql"
+```
+
+If you installed XAMPP to a different location, adjust the paths in the command.
+
+### 4. Configure the Database Connection
+
+The connection settings are in `config/db.php`. They default to:
+
+| Setting | Default |
+| --- | --- |
+| Host | `localhost` |
+| Database | `koi_mil_gaya` |
+| Username | `root` |
+| Password | *(empty)* |
+
+These defaults match a typical local XAMPP MySQL installation. If you configured a MySQL password or use a different database account, update `$dbuser` and `$dbpass` in `config/db.php` to match your local settings.
+
+### 5. Open the Project
+
+Visit [http://localhost/koi_mil_gaya/](http://localhost/koi_mil_gaya/) in your browser. Keep Apache and MySQL running while developing locally.
 
 ## Git and GitHub Setup Guide
 
