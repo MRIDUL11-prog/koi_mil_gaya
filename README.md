@@ -29,9 +29,10 @@ This project is built with the following stack:
 
 - Frontend: HTML, CSS, JavaScript
 - Backend: PHP
-- Database: MySQL
-- Server environment: Apache / PHP-supported web server
-- Version control: Git and GitHub
+- Database: MySQL (via XAMPP)
+- Local Server Environment: XAMPP (Apache + PHP + MySQL)
+- Code Editor: Visual Studio Code
+- Version Control: Git and GitHub
 
 ## Project Structure
 
