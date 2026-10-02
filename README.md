@@ -40,15 +40,20 @@ This project is built with the following stack:
 koi_mil_gaya/
 ├── README.md
 ├── .gitignore
-├── package.json
-├── src/
-├── public/
-├── backend/
-├── docs/
-└── tests/
+├── index.php
+├── config/
+│   └── db.php
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       └── script.js
+├── database/
+│   └── schema.sql
+└── README.md
 ```
 
-> The exact structure may change as the project evolves.
+> This project is currently structured as a simple PHP application ready for local XAMPP development.
 
 ## Git and GitHub Setup Guide
 
@@ -300,50 +305,74 @@ Then open a Pull Request on GitHub.
 Make sure the following tools are installed:
 
 - Git
-- PHP 8.x
-- MySQL
-- Apache or another PHP-compatible local web server
-- A browser such as Chrome or Edge
+- XAMPP (Apache + MySQL + PHP)
+- Visual Studio Code
+- Browser (Chrome / Edge)
 
 ### Local Setup
+
+1. Install XAMPP and start Apache and MySQL.
+2. Clone the repository:
 
 ```bash
 git clone https://github.com/<your-github-username>/koi_mil_gaya.git
 cd koi_mil_gaya
 ```
 
-### Configure the Database
+3. Copy the project folder into the XAMPP web root, usually:
 
-Create a MySQL database and update your PHP configuration file with the correct database credentials:
-
-```php
-$db_host = "localhost";
-$db_name = "koi_mil_gaya";
-$db_user = "root";
-$db_pass = "";
+```text
+C:/xampp/htdocs/
 ```
 
-Then import the SQL file if one is provided:
+So the project path becomes:
+
+```text
+C:/xampp/htdocs/koi_mil_gaya/
+```
+
+### Configure the Database
+
+Create the database in phpMyAdmin or MySQL CLI:
+
+```sql
+CREATE DATABASE koi_mil_gaya;
+```
+
+Then import the SQL schema:
 
 ```bash
-mysql -u root -p koi_mil_gaya < database.sql
+mysql -u root koi_mil_gaya < database/schema.sql
+```
+
+The database credentials in `config/db.php` are configured as:
+
+```php
+$host = 'localhost';
+$dbname = 'koi_mil_gaya';
+$dbuser = 'root';
+$dbpass = '';
 ```
 
 ### Run the Project
 
-For a local PHP setup, start the project from the project root using a local web server:
+Open your browser and visit:
+
+```text
+http://localhost/koi_mil_gaya/
+```
+
+If you want to run it from the terminal directly:
 
 ```bash
 php -S localhost:8000
 ```
 
-Then open the browser and visit:
+Then open:
 
 ```text
 http://localhost:8000
 ```
-
-If the project uses a different server setup, update these commands to match your local environment.
 
 ## Development Workflow
 
